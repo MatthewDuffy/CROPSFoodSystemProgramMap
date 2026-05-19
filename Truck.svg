@@ -1,0 +1,10 @@
+<!-- food-pantry-truck.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <g fill="none" stroke="#1976D2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="8" width="9" height="7" rx="1.2" ry="1.2" fill="#2196F3"/>
+    <path d="M12 10h3.5c.4 0 .8.2 1 .6l1.7 3.1c.1.2.2.5.2.8V15H12V10Z" fill="#2196F3"/>
+    <circle cx="7" cy="16.5" r="1.7" fill="#E3F2FD"/>
+    <circle cx="16.5" cy="16.5" r="1.7" fill="#E3F2FD"/>
+    <path d="M3 16.5h2M8.7 16.5h5.8M18.2 16.5H21"/>
+  </g>
+</svg>
