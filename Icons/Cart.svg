@@ -1,0 +1,9 @@
+<!-- food-store-cart.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <g fill="none" stroke="#2E7D32" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 5h2l1.2 8.2c.1.5.5.8 1 .8h8.1c.5 0 .9-.3 1-.8L18.8 9H9.2" fill="#A5D6A7"/>
+    <circle cx="10" cy="17.5" r="1.5" fill="#E8F5E9"/>
+    <circle cx="16" cy="17.5" r="1.5" fill="#E8F5E9"/>
+    <path d="M4 5h1.5" />
+  </g>
+</svg>
