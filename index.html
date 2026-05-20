@@ -96,4 +96,253 @@ html, body { margin:0; padding:0; height:100%; }
   background: #34c759;
 }
 
-/* ------------------ Drawer Branding ----------------
+/* ------------------ Drawer Branding ------------------ */
+.drawer-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.drawer-logo {
+  height: 40px;
+}
+
+.drawer-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.partner-text {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.drawer-credit {
+  padding: 12px 0;
+  font-size: 12px;
+  color: #777;
+  border-top: 1px solid #eee;
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* ------------------ Collapsible Legend ------------------ */
+#legend-container {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  z-index: 9998;
+  font-family: sans-serif;
+}
+
+#legend-toggle {
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid #ddd;
+}
+
+#map-legend {
+  background: rgba(255,255,255,0.95);
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  font-size: 12px;
+  margin-top: 6px;
+  display: none;
+  max-width: 260px;
+}
+
+.legend-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.legend-item img {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- CROPS Banner -->
+<div id="crops-banner">
+  <span class="banner-text">Communities Revolutionizing</span>
+  <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png">
+  <span class="banner-text">Open Public Spaces</span>
+</div>
+
+<!-- Map -->
+<div id="map"></div>
+
+<!-- Collapsible Legend -->
+<div id="legend-container">
+  <div id="legend-toggle">Legend ▼</div>
+
+  <div id="map-legend">
+    <div class="legend-title">Map Legend</div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Carrot.svg">
+      <span>Farmers Market</span>
+    </div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Truck.svg">
+      <span>Food Pantry / Distribution</span>
+    </div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Sunflower.svg">
+      <span>Garden</span>
+    </div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Soup.svg">
+      <span>Soup Kitchen</span>
+    </div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Meal.svg">
+      <span>Food Related Programs</span>
+    </div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/GreanShoppingCart.svg">
+      <span>Food Store</span>
+    </div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Apple.svg">
+      <span>Farm</span>
+    </div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/LightBlueTruck.svg">
+      <span>Jewish Family Service Distribution</span>
+    </div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Cart.svg">
+      <span>Atlantic Care Community Mobile Market</span>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Drawer -->
+<div id="drawer">
+  <span id="closeDrawer">✕</span>
+
+  <div class="drawer-header">
+    <img class="drawer-logo" src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png">
+    <div class="drawer-title">CROPS Fresh Food System</div>
+  </div>
+
+  <div class="partner-text">
+    <a href="https://www.cropsnj.org/#sponsors" target="_blank">
+      Gratefully in partnership with our sponsors
+    </a>
+  </div>
+
+  <div id="drawerContent"></div>
+
+  <div class="drawer-credit">
+    Courtesy of Young Lemon LLC
+  </div>
+</div>
+
+<script>
+// Initialize map
+const map = L.map('map').setView([39.36, -74.43], 12);
+
+// Basemap
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19
+}).addTo(map);
+
+// Drawer elements
+const drawer = document.getElementById('drawer');
+const drawerContent = document.getElementById('drawerContent');
+document.getElementById('closeDrawer').onclick = () => drawer.classList.remove('open');
+
+// Collapsible legend
+const legendToggle = document.getElementById("legend-toggle");
+const legendBox = document.getElementById("map-legend");
+
+legendToggle.onclick = () => {
+  const isOpen = legendBox.style.display === "block";
+  legendBox.style.display = isOpen ? "none" : "block";
+  legendToggle.textContent = isOpen ? "Legend ▼" : "Legend ▲";
+};
+
+// Marker cluster group
+const markers = L.markerClusterGroup();
+
+// Load GeoJSON
+fetch("https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/data/freshfoodlocations.geojson")
+  .then(r => r.json())
+  .then(data => {
+    L.geoJSON(data, {
+      pointToLayer: function(feature, latlng) {
+        const icon = L.icon({
+          iconUrl: feature.properties.icon_url,
+          iconSize: [32, 32],
+          iconAnchor: [16, 32]
+        });
+        return L.marker(latlng, { icon: icon });
+      },
+      onEachFeature: function(feature, layer) {
+        layer.on("click", () => {
+          showDrawer(feature);
+        });
+      }
+    }).addTo(markers);
+
+    map.addLayer(markers);
+    map.fitBounds(markers.getBounds());
+  });
+
+// Drawer content builder
+function showDrawer(feature) {
+  const p = feature.properties;
+  const lat = feature.geometry.coordinates[1];
+  const lng = feature.geometry.coordinates[0];
+
+  const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+  const appleUrl = `https://maps.apple.com/?daddr=${lat},${lng}`;
+
+  drawerContent.innerHTML = `
+    <h2>${p.Name}</h2>
+    <p><strong>Type:</strong> ${p.Type}</p>
+    <p><strong>Address:</strong> ${p.Address}, ${p.City}, ${p.State}</p>
+    <p><strong>Hours:</strong> ${p.Hours}</p>
+    ${p.Email && p.Email !== "�" ? `<p><strong>Email:</strong> ${p.Email}</p>` : ""}
+    ${p.Phone && p.Phone !== "�" ? `<p><strong>Phone:</strong> ${p.Phone}</p>` : ""}
+    <a class="navButton" href="${googleUrl}" target="_blank">Open in Google Maps</a>
+    <a class="navButton secondary" href="${appleUrl}" target="_blank">Open in Apple Maps</a>
+  `;
+
+  drawer.classList.add("open");
+}
+</script>
+
+</body>
+</html>
