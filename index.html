@@ -30,15 +30,23 @@ html, body { margin:0; padding:0; height:100%; }
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 12px;
   z-index: 9999;
   overflow: hidden;
+  padding: 0 12px;
 }
 
 #crops-banner img {
   height: 32px;
   width: auto;
   display: block;
-  margin: 8px auto;
+}
+
+.banner-text {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #333;
 }
 
 /* Push map down so banner doesn't cover it */
@@ -92,7 +100,9 @@ html, body { margin:0; padding:0; height:100%; }
 
 <!-- CROPS Banner -->
 <div id="crops-banner">
+  <span class="banner-text">Communities Revolutionizing</span>
   <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png" alt="CROPS Logo">
+  <span class="banner-text">Open Public Spaces</span>
 </div>
 
 <!-- Map -->
