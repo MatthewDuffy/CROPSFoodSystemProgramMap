@@ -147,7 +147,7 @@ html, body { margin:0; padding:0; height:100%; }
   border: 1px solid #ddd;
 }
 
-/* Header row */
+/* Header row: left-aligned filter toggle, then title, then collapse control */
 #legend-header {
   display: flex;
   align-items: center;
@@ -172,7 +172,6 @@ html, body { margin:0; padding:0; height:100%; }
   font-size: 13px;
   font-weight: 600;
   color: #333;
-  cursor: pointer;
 }
 
 #legend-collapse {
@@ -389,13 +388,7 @@ html, body { margin:0; padding:0; height:100%; }
   </div>
 
   <div class="partner-text">
-    <a href="https://www.cropsnj.org" target="_blank"
-       onclick="setTimeout(() => {
-         try {
-           const fullHeight = document.body.scrollHeight;
-           window.scrollTo({ top: fullHeight * 0.55, behavior: 'smooth' });
-         } catch(e) {}
-       }, 700)">
+    <a href="https://www.cropsnj.org/#sponsors" target="_blank">
       Gratefully in partnership with our sponsors
     </a>
   </div>
@@ -407,7 +400,6 @@ html, body { margin:0; padding:0; height:100%; }
   </div>
 </div>
 
-<!-- PART 2 WILL BEGIN WITH: <script> -->
 <script>
 // Initialize map
 const map = L.map('map').setView([39.36, -74.43], 12);
@@ -550,4 +542,3 @@ function showDrawer(feature) {
 
 </body>
 </html>
-
