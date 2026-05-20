@@ -93,6 +93,51 @@ html, body { margin:0; padding:0; height:100%; }
   text-decoration: none;
   font-weight: bold;
 }
+
+/* ------------------ Drawer Branding ------------------ */
+.drawer-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.drawer-logo {
+  height: 40px;
+}
+
+.drawer-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.drawer-partner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.partner-logo {
+  height: 32px;
+}
+
+.partner-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.drawer-credit {
+  padding: 12px 0;
+  font-size: 12px;
+  color: #777;
+  border-top: 1px solid #eee;
+  margin-top: 16px;
+  text-align: center;
+}
 </style>
 </head>
 
@@ -111,7 +156,22 @@ html, body { margin:0; padding:0; height:100%; }
 <!-- Bottom Drawer -->
 <div id="drawer">
   <span id="closeDrawer">✕</span>
+
+  <div class="drawer-header">
+    <img class="drawer-logo" src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png">
+    <div class="drawer-title">CROPS Fresh Food System</div>
+  </div>
+
+  <div class="drawer-partner">
+    <img class="partner-logo" src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/Partner_Logo.png">
+    <div class="partner-text">In partnership with Atlantic County</div>
+  </div>
+
   <div id="drawerContent"></div>
+
+  <div class="drawer-credit">
+    Courtesy of Young Lemon LLC
+  </div>
 </div>
 
 <script>
