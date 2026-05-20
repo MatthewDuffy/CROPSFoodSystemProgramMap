@@ -17,6 +17,12 @@
 /* ------------------ Base Layout ------------------ */
 html, body { margin:0; padding:0; height:100%; }
 #map { height:100%; width:100%; }
+  
+<!-- Splash Screen -->
+<div id="splash-screen">
+  <img id="splash-logo" src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png" alt="CROPS Logo">
+  <h1 id="splash-text">Welcome to C.R.O.P.S. Fresh Food System Program Map</h1>
+</div>
 
 /* ------------------ CROPS Banner ------------------ */
 #crops-banner {
@@ -235,6 +241,42 @@ html, body { margin:0; padding:0; height:100%; }
   margin-left: 4px;
   margin-right: 4px;
 }
+/* ------------------ Splash Screen ------------------ */
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+#splash-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#splash-logo {
+  width: 160px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+#splash-text {
+  font-size: 20px;
+  text-align: center;
+  color: #333;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
 </style>
 </head>
 
@@ -403,6 +445,16 @@ html, body { margin:0; padding:0; height:100%; }
 <script>
 // Initialize map
 const map = L.map('map').setView([39.36, -74.43], 12);
+  
+// Splash screen tap-to-dismiss
+document.addEventListener("DOMContentLoaded", () => {
+  const splash = document.getElementById("splash-screen");
+  const splashText = document.getElementById("splash-text");
+
+  splashText.addEventListener("click", () => {
+    splash.classList.add("fade-out");
+  });
+});
 
 // Basemap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
