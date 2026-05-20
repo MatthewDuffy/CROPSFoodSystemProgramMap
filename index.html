@@ -220,10 +220,15 @@ html, body { margin:0; padding:0; height:100%; }
 }
 
 .filter-option {
-  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
 }
 
-.filter-option input {
+.filter-option img {
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
   margin-right: 4px;
 }
 </style>
@@ -250,43 +255,53 @@ html, body { margin:0; padding:0; height:100%; }
       <div id="legend-collapse">▼</div>
     </div>
     <div id="legend-body">
+
       <!-- Legend mode -->
       <div id="legend-content">
         <div class="legend-title">Map Legend</div>
+
         <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Carrot.svg" alt="Farmers Market">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Carrot.svg">
           <span>Farmers Market</span>
         </div>
+
         <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Truck.svg" alt="Food Pantry">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Truck.svg">
           <span>Food Pantry</span>
         </div>
+
         <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/GreanShoppingCart.svg" alt="Food Store">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/GreanShoppingCart.svg">
           <span>Food Store</span>
         </div>
+
         <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Sunflower.svg" alt="Garden">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Sunflower.svg">
           <span>Garden</span>
         </div>
+
         <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Apple.svg" alt="Farm">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Apple.svg">
           <span>Farm</span>
         </div>
+
         <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Soup.svg" alt="Soup Kitchen">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Soup.svg">
           <span>Soup Kitchen</span>
         </div>
+
         <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Meal.svg" alt="Food Related Program">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Meal.svg">
           <span>Food Related Program</span>
         </div>
+
         <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/LightBlueTruck.svg" alt="Jewish Family Service Distribution">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/LightBlueTruck.svg">
           <span>Jewish Family Service Distribution</span>
         </div>
+
         <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Cart.svg" alt="AtlantiCare Community Mobile Market">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Cart.svg">
           <span>AtlantiCare Community Mobile Market</span>
         </div>
       </div>
@@ -294,36 +309,67 @@ html, body { margin:0; padding:0; height:100%; }
       <!-- Filter mode -->
       <div id="filter-content" style="display:none;">
         <div class="filter-title">Filter by Location Type</div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="ALL" checked> All Locations</label>
-        </div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="Farmers Market"> Farmers Market</label>
-        </div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="Pantry"> Food Pantry</label>
-        </div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="Food Store"> Food Store</label>
-        </div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="Garden"> Garden</label>
-        </div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="Farm"> Farm</label>
-        </div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="Soup Kitchen"> Soup Kitchen</label>
-        </div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="Program"> Food Related Program</label>
-        </div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="Jewish Family Service Distribution"> Jewish Family Service Distribution</label>
-        </div>
-        <div class="filter-option">
-          <label><input type="radio" name="typeFilter" value="AtlantiCare Community Mobile Market"> AtlantiCare Community Mobile Market</label>
-        </div>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="ALL" checked>
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/All.svg">
+          All Locations
+        </label>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="Farmers Market">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Carrot.svg">
+          Farmers Market
+        </label>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="Pantry">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Truck.svg">
+          Food Pantry
+        </label>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="Food Store">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/GreanShoppingCart.svg">
+          Food Store
+        </label>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="Garden">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Sunflower.svg">
+          Garden
+        </label>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="Farm">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Apple.svg">
+          Farm
+        </label>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="Soup Kitchen">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Soup.svg">
+          Soup Kitchen
+        </label>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="Program">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Meal.svg">
+          Food Related Program
+        </label>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="Jewish Family Service Distribution">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/LightBlueTruck.svg">
+          Jewish Family Service Distribution
+        </label>
+
+        <label class="filter-option">
+          <input type="radio" name="typeFilter" value="AtlantiCare Community Mobile Market">
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Cart.svg">
+          AtlantiCare Community Mobile Market
+        </label>
+
       </div>
     </div>
   </div>
@@ -334,7 +380,7 @@ html, body { margin:0; padding:0; height:100%; }
   <span id="closeDrawer">✕</span>
 
   <div class="drawer-header">
-    <img class="drawer-logo" src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png" alt="CROPS Logo">
+    <img class="drawer-logo" src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png">
     <div class="drawer-title">CROPS Fresh Food System</div>
   </div>
 
@@ -366,7 +412,6 @@ const drawerContent = document.getElementById('drawerContent');
 document.getElementById('closeDrawer').onclick = () => drawer.classList.remove('open');
 
 // Legend / Filter panel behavior
-const legendPanel = document.getElementById('legend-panel');
 const legendBody = document.getElementById('legend-body');
 const legendCollapse = document.getElementById('legend-collapse');
 const filterToggle = document.getElementById('filterToggle');
@@ -374,7 +419,7 @@ const legendContent = document.getElementById('legend-content');
 const filterContent = document.getElementById('filter-content');
 
 let legendCollapsed = false;
-let filterMode = false; // false = legend mode, true = filter mode
+let filterMode = false;
 
 function updateLegendCollapseUI() {
   legendBody.style.display = legendCollapsed ? 'none' : 'block';
@@ -386,13 +431,12 @@ legendCollapse.addEventListener('click', () => {
   updateLegendCollapseUI();
 });
 
-// Also allow clicking title area to collapse/expand
 document.getElementById('legend-title').addEventListener('click', () => {
   legendCollapsed = !legendCollapsed;
   updateLegendCollapseUI();
 });
 
-// Filter toggle: switch between legend and filter views
+// Filter toggle
 filterToggle.addEventListener('click', () => {
   filterMode = !filterMode;
   if (filterMode) {
@@ -409,7 +453,7 @@ filterToggle.addEventListener('click', () => {
 // Marker layers
 const clusterGroup = L.markerClusterGroup();
 const plainGroup = L.layerGroup();
-const allMarkers = []; // { marker, type }
+const allMarkers = [];
 
 // Load GeoJSON
 fetch("https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/data/freshfoodlocations.geojson")
@@ -423,18 +467,13 @@ fetch("https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/
           iconAnchor: [16, 32]
         });
         const marker = L.marker(latlng, { icon: icon });
-        const typeVal = feature.properties.Type;
-        allMarkers.push({ marker: marker, type: typeVal, feature: feature });
+        allMarkers.push({ marker, type: feature.properties.Type, feature });
         return marker;
       },
       onEachFeature: function(feature, layer) {
-        layer.on("click", () => {
-          showDrawer(feature);
-        });
+        layer.on("click", () => showDrawer(feature));
       }
-    }).eachLayer(m => {
-      clusterGroup.addLayer(m);
-    });
+    }).eachLayer(m => clusterGroup.addLayer(m));
 
     map.addLayer(clusterGroup);
     if (clusterGroup.getLayers().length > 0) {
@@ -449,7 +488,6 @@ function applyFilter(rawType) {
   plainGroup.clearLayers();
 
   if (rawType === 'ALL') {
-    // Restore clustering
     map.addLayer(clusterGroup);
     if (clusterGroup.getLayers().length > 0) {
       map.fitBounds(clusterGroup.getBounds());
@@ -457,7 +495,6 @@ function applyFilter(rawType) {
     return;
   }
 
-  // Add only matching markers to plainGroup
   allMarkers.forEach(obj => {
     if (obj.type === rawType) {
       plainGroup.addLayer(obj.marker);
@@ -473,10 +510,7 @@ function applyFilter(rawType) {
 
 // Wire up filter radio buttons
 document.querySelectorAll('input[name="typeFilter"]').forEach(input => {
-  input.addEventListener('change', (e) => {
-    const rawType = e.target.value; // already raw values
-    applyFilter(rawType);
-  });
+  input.addEventListener('change', e => applyFilter(e.target.value));
 });
 
 // Drawer content builder
@@ -496,12 +530,4 @@ function showDrawer(feature) {
     ${p.Email && p.Email !== "�" ? `<p><strong>Email:</strong> ${p.Email}</p>` : ""}
     ${p.Phone && p.Phone !== "�" ? `<p><strong>Phone:</strong> ${p.Phone}</p>` : ""}
     <a class="navButton" href="${googleUrl}" target="_blank">Open in Google Maps</a>
-    <a class="navButton secondary" href="${appleUrl}" target="_blank">Open in Apple Maps</a>
-  `;
-
-  drawer.classList.add("open");
-}
-</script>
-
-</body>
-</
+    <a
