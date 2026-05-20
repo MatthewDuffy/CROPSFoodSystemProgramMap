@@ -482,7 +482,9 @@ function updateLegendCollapseUI() {
   legendBody.style.display = legendCollapsed ? 'none' : 'block';
   legendCollapse.textContent = legendCollapsed ? '▲' : '▼';
 }
-
+  
+updateLegendCollapseUI();   // ← REQUIRED for initial collapsed state
+  
 legendCollapse.addEventListener('click', () => {
   legendCollapsed = !legendCollapsed;
   updateLegendCollapseUI();
