@@ -155,4 +155,15 @@ function showDrawer(feature) {
     <p><strong>Address:</strong> ${p.Address}, ${p.City}, ${p.State}</p>
     <p><strong>Hours:</strong> ${p.Hours}</p>
     ${p.Email && p.Email !== "�" ? `<p><strong>Email:</strong> ${p.Email}</p>` : ""}
-    ${p.Phone &&
+    ${p.Phone && p.Phone !== "�" ? `<p><strong>Phone:</strong> ${p.Phone}</p>` : ""}
+    <a class="navButton" href="https://www.google.com/maps/dir/?api=1&destination=${feature.geometry.coordinates[1]},${feature.geometry.coordinates[0]}" target="_blank">
+      Navigate to Here
+    </a>
+  `;
+
+  drawer.classList.add("open");
+}
+</script>
+
+</body>
+</html>
