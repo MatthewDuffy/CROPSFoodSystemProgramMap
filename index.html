@@ -130,64 +130,35 @@ html, body { margin:0; padding:0; height:100%; }
   text-align: center;
 }
 
-/* ------------------ Legend + Filter Panel ------------------ */
+/* ------------------ Collapsible Legend ------------------ */
 #legend-container {
   position: fixed;
   bottom: 12px;
   left: 12px;
   z-index: 9998;
   font-family: sans-serif;
-  max-width: 280px;
 }
 
-#legend-panel {
-  background: rgba(255,255,255,0.97);
+#legend-toggle {
+  background: #ffffff;
+  padding: 8px 12px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
   border: 1px solid #ddd;
 }
 
-/* Header row: left-aligned filter toggle, then title, then collapse control */
-#legend-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 8px;
-  border-bottom: 1px solid #eee;
-}
-
-#filterToggle {
-  font-size: 11px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background: #f5f5f5;
-  cursor: pointer;
-  margin-right: 6px;
-  white-space: nowrap;
-}
-
-#legend-title {
-  flex: 1;
-  font-size: 13px;
-  font-weight: 600;
-  color: #333;
-}
-
-#legend-collapse {
-  font-size: 14px;
-  cursor: pointer;
-  padding: 2px 4px;
-}
-
-/* Panel body */
-#legend-body {
-  padding: 8px 10px 10px 10px;
-}
-
-/* Legend mode content */
-#legend-content {
+#map-legend {
+  background: rgba(255,255,255,0.95);
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
   font-size: 12px;
+  margin-top: 6px;
+  display: none;
+  max-width: 260px;
 }
 
 .legend-title {
@@ -207,30 +178,6 @@ html, body { margin:0; padding:0; height:100%; }
   height: 18px;
   margin-right: 6px;
 }
-
-/* Filter mode content */
-#filter-content {
-  font-size: 12px;
-}
-
-.filter-title {
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #333;
-}
-
-.filter-option {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
-.filter-option img {
-  width: 16px;
-  height: 16px;
-  margin-left: 6px;
-  margin-right: 4px;
-}
 </style>
 </head>
 
@@ -239,137 +186,63 @@ html, body { margin:0; padding:0; height:100%; }
 <!-- CROPS Banner -->
 <div id="crops-banner">
   <span class="banner-text">Communities Revolutionizing</span>
-  <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png" alt="CROPS Logo">
+  <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png">
   <span class="banner-text">Open Public Spaces</span>
 </div>
 
 <!-- Map -->
 <div id="map"></div>
 
-<!-- Legend + Filter Panel -->
+<!-- Collapsible Legend -->
 <div id="legend-container">
-  <div id="legend-panel">
-    <div id="legend-header">
-      <button id="filterToggle">+ Filter</button>
-      <div id="legend-title">Location Destination Options</div>
-      <div id="legend-collapse">▼</div>
+  <div id="legend-toggle">Legend ▼</div>
+
+  <div id="map-legend">
+    <div class="legend-title">Map Legend</div>
+
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Carrot.svg">
+      <span>Farmers Market</span>
     </div>
-    <div id="legend-body">
 
-      <!-- Legend mode -->
-      <div id="legend-content">
-        <div class="legend-title">Map Legend</div>
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Truck.svg">
+      <span>Food Pantry / Distribution</span>
+    </div>
 
-        <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Carrot.svg">
-          <span>Farmers Market</span>
-        </div>
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Sunflower.svg">
+      <span>Garden</span>
+    </div>
 
-        <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Truck.svg">
-          <span>Food Pantry</span>
-        </div>
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Soup.svg">
+      <span>Soup Kitchen</span>
+    </div>
 
-        <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/GreanShoppingCart.svg">
-          <span>Food Store</span>
-        </div>
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Meal.svg">
+      <span>Food Related Programs</span>
+    </div>
 
-        <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Sunflower.svg">
-          <span>Garden</span>
-        </div>
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/GreanShoppingCart.svg">
+      <span>Food Store</span>
+    </div>
 
-        <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Apple.svg">
-          <span>Farm</span>
-        </div>
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Apple.svg">
+      <span>Farm</span>
+    </div>
 
-        <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Soup.svg">
-          <span>Soup Kitchen</span>
-        </div>
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/LightBlueTruck.svg">
+      <span>Jewish Family Service Distribution</span>
+    </div>
 
-        <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Meal.svg">
-          <span>Food Related Program</span>
-        </div>
-
-        <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/LightBlueTruck.svg">
-          <span>Jewish Family Service Distribution</span>
-        </div>
-
-        <div class="legend-item">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Cart.svg">
-          <span>AtlantiCare Community Mobile Market</span>
-        </div>
-      </div>
-
-      <!-- Filter mode -->
-      <div id="filter-content" style="display:none;">
-        <div class="filter-title">Filter by Location Type</div>
-
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="ALL" checked>
-          All Locations
-          </label>
-
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="Farmers Market">
-          <img src="...Carrot.svg">
-          Farmers Market
-        </label>
-                
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="Pantry">
-          <img src="...Truck.svg">
-          Food Pantry
-        </label>
-
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="Food Store">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/GreanShoppingCart.svg">
-          Food Store
-        </label>
-
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="Garden">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Sunflower.svg">
-          Garden
-        </label>
-
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="Farm">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Apple.svg">
-          Farm
-        </label>
-
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="Soup Kitchen">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Soup.svg">
-          Soup Kitchen
-        </label>
-
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="Program">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Meal.svg">
-          Food Related Program
-        </label>
-
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="Jewish Family Service Distribution">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/LightBlueTruck.svg">
-          Jewish Family Service Distribution
-        </label>
-
-        <label class="filter-option">
-          <input type="radio" name="typeFilter" value="AtlantiCare Community Mobile Market">
-          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Cart.svg">
-          AtlantiCare Community Mobile Market
-        </label>
-
-      </div>
+    <div class="legend-item">
+      <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Cart.svg">
+      <span>Atlantic Care Community Mobile Market</span>
     </div>
   </div>
 </div>
@@ -410,49 +283,18 @@ const drawer = document.getElementById('drawer');
 const drawerContent = document.getElementById('drawerContent');
 document.getElementById('closeDrawer').onclick = () => drawer.classList.remove('open');
 
-// Legend / Filter panel behavior
-const legendBody = document.getElementById('legend-body');
-const legendCollapse = document.getElementById('legend-collapse');
-const filterToggle = document.getElementById('filterToggle');
-const legendContent = document.getElementById('legend-content');
-const filterContent = document.getElementById('filter-content');
+// Collapsible legend
+const legendToggle = document.getElementById("legend-toggle");
+const legendBox = document.getElementById("map-legend");
 
-let legendCollapsed = false;
-let filterMode = false;
+legendToggle.onclick = () => {
+  const isOpen = legendBox.style.display === "block";
+  legendBox.style.display = isOpen ? "none" : "block";
+  legendToggle.textContent = isOpen ? "Legend ▼" : "Legend ▲";
+};
 
-function updateLegendCollapseUI() {
-  legendBody.style.display = legendCollapsed ? 'none' : 'block';
-  legendCollapse.textContent = legendCollapsed ? '▲' : '▼';
-}
-
-legendCollapse.addEventListener('click', () => {
-  legendCollapsed = !legendCollapsed;
-  updateLegendCollapseUI();
-});
-
-document.getElementById('legend-title').addEventListener('click', () => {
-  legendCollapsed = !legendCollapsed;
-  updateLegendCollapseUI();
-});
-
-// Filter toggle
-filterToggle.addEventListener('click', () => {
-  filterMode = !filterMode;
-  if (filterMode) {
-    filterToggle.textContent = '– Legend';
-    legendContent.style.display = 'none';
-    filterContent.style.display = 'block';
-  } else {
-    filterToggle.textContent = '+ Filter';
-    legendContent.style.display = 'block';
-    filterContent.style.display = 'none';
-  }
-});
-
-// Marker layers
-const clusterGroup = L.markerClusterGroup();
-const plainGroup = L.layerGroup();
-const allMarkers = [];
+// Marker cluster group
+const markers = L.markerClusterGroup();
 
 // Load GeoJSON
 fetch("https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/data/freshfoodlocations.geojson")
@@ -465,52 +307,18 @@ fetch("https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/
           iconSize: [32, 32],
           iconAnchor: [16, 32]
         });
-        const marker = L.marker(latlng, { icon: icon });
-        allMarkers.push({ marker, type: feature.properties.Type, feature });
-        return marker;
+        return L.marker(latlng, { icon: icon });
       },
       onEachFeature: function(feature, layer) {
-        layer.on("click", () => showDrawer(feature));
+        layer.on("click", () => {
+          showDrawer(feature);
+        });
       }
-    }).eachLayer(m => clusterGroup.addLayer(m));
+    }).addTo(markers);
 
-    map.addLayer(clusterGroup);
-    if (clusterGroup.getLayers().length > 0) {
-      map.fitBounds(clusterGroup.getBounds());
-    }
+    map.addLayer(markers);
+    map.fitBounds(markers.getBounds());
   });
-
-// Apply filter
-function applyFilter(rawType) {
-  map.removeLayer(clusterGroup);
-  map.removeLayer(plainGroup);
-  plainGroup.clearLayers();
-
-  if (rawType === 'ALL') {
-    map.addLayer(clusterGroup);
-    if (clusterGroup.getLayers().length > 0) {
-      map.fitBounds(clusterGroup.getBounds());
-    }
-    return;
-  }
-
-  allMarkers.forEach(obj => {
-    if (obj.type === rawType) {
-      plainGroup.addLayer(obj.marker);
-    }
-  });
-
-  map.addLayer(plainGroup);
-
-  if (plainGroup.getLayers().length > 0) {
-    map.fitBounds(plainGroup.getBounds());
-  }
-}
-
-// Wire up filter radio buttons
-document.querySelectorAll('input[name="typeFilter"]').forEach(input => {
-  input.addEventListener('change', e => applyFilter(e.target.value));
-});
 
 // Drawer content builder
 function showDrawer(feature) {
@@ -529,4 +337,12 @@ function showDrawer(feature) {
     ${p.Email && p.Email !== "�" ? `<p><strong>Email:</strong> ${p.Email}</p>` : ""}
     ${p.Phone && p.Phone !== "�" ? `<p><strong>Phone:</strong> ${p.Phone}</p>` : ""}
     <a class="navButton" href="${googleUrl}" target="_blank">Open in Google Maps</a>
-    <a
+    <a class="navButton secondary" href="${appleUrl}" target="_blank">Open in Apple Maps</a>
+  `;
+
+  drawer.classList.add("open");
+}
+</script>
+
+</body>
+</html>
