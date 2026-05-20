@@ -94,6 +94,10 @@ html, body { margin:0; padding:0; height:100%; }
   font-weight: bold;
 }
 
+.navButton.secondary {
+  background: #34c759; /* Apple Maps green-ish */
+}
+
 /* ------------------ Drawer Branding ------------------ */
 .drawer-header {
   display: flex;
@@ -138,6 +142,39 @@ html, body { margin:0; padding:0; height:100%; }
   margin-top: 16px;
   text-align: center;
 }
+
+/* ------------------ Map Legend ------------------ */
+#map-legend {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(255,255,255,0.95);
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  font-family: sans-serif;
+  font-size: 12px;
+  z-index: 9998;
+  max-width: 260px;
+}
+
+.legend-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.legend-item img {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+}
 </style>
 </head>
 
@@ -153,6 +190,47 @@ html, body { margin:0; padding:0; height:100%; }
 <!-- Map -->
 <div id="map"></div>
 
+<!-- Map Legend -->
+<div id="map-legend">
+  <div class="legend-title">Map Legend</div>
+  <div class="legend-item">
+    <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Carrot.svg" alt="Farmers Market">
+    <span>Farmers Market</span>
+  </div>
+  <div class="legend-item">
+    <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Truck.svg" alt="Food Pantry / Distribution">
+    <span>Food Pantry / Distribution</span>
+  </div>
+  <div class="legend-item">
+    <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Sunflower.svg" alt="Garden">
+    <span>Garden</span>
+  </div>
+  <div class="legend-item">
+    <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Soup.svg" alt="Soup Kitchen">
+    <span>Soup Kitchen</span>
+  </div>
+  <div class="legend-item">
+    <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Meal.svg" alt="Food Related Programs">
+    <span>Food Related Programs</span>
+  </div>
+  <div class="legend-item">
+    <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/GreanShoppingCart.svg" alt="Food Store">
+    <span>Food Store</span>
+  </div>
+  <div class="legend-item">
+    <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Apple.svg" alt="Farm">
+    <span>Farm</span>
+  </div>
+  <div class="legend-item">
+    <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/LightBlueTruck.svg" alt="Jewish Family Service Distribution">
+    <span>Jewish Family Service Distribution</span>
+  </div>
+  <div class="legend-item">
+    <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/Cart.svg" alt="Atlantic Care Community Mobile Market">
+    <span>Atlantic Care Community Mobile Market</span>
+  </div>
+</div>
+
 <!-- Bottom Drawer -->
 <div id="drawer">
   <span id="closeDrawer">✕</span>
@@ -162,12 +240,11 @@ html, body { margin:0; padding:0; height:100%; }
     <div class="drawer-title">CROPS Fresh Food System</div>
   </div>
 
-<div class="partner-text">
+  <div class="partner-text">
     <a href="https://www.cropsnj.org/#sponsors" target="_blank">
-        Gratefully in partnership with our sponsors
+      Gratefully in partnership with our sponsors
     </a>
-</div>
-
+  </div>
 
   <div id="drawerContent"></div>
 
@@ -220,6 +297,11 @@ fetch("https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/
 // Drawer content builder
 function showDrawer(feature) {
   const p = feature.properties;
+  const lat = feature.geometry.coordinates[1];
+  const lng = feature.geometry.coordinates[0];
+
+  const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+  const appleUrl = `https://maps.apple.com/?daddr=${lat},${lng}`;
 
   drawerContent.innerHTML = `
     <h2>${p.Name}</h2>
@@ -228,8 +310,11 @@ function showDrawer(feature) {
     <p><strong>Hours:</strong> ${p.Hours}</p>
     ${p.Email && p.Email !== "�" ? `<p><strong>Email:</strong> ${p.Email}</p>` : ""}
     ${p.Phone && p.Phone !== "�" ? `<p><strong>Phone:</strong> ${p.Phone}</p>` : ""}
-    <a class="navButton" href="https://www.google.com/maps/dir/?api=1&destination=${feature.geometry.coordinates[1]},${feature.geometry.coordinates[0]}" target="_blank">
-      Navigate to Here
+    <a class="navButton" href="${googleUrl}" target="_blank">
+      Open in Google Maps
+    </a>
+    <a class="navButton secondary" href="${appleUrl}" target="_blank">
+      Open in Apple Maps
     </a>
   `;
 
