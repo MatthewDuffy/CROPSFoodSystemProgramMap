@@ -69,6 +69,31 @@ html, body { margin:0; padding:0; height:100%; }
   font-family: sans-serif;
   z-index: 9999;
 }
+  .drawerHeader {
+  background: #f0f4ff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2a3f8f;
+  margin-bottom: 12px;
+}
+.drawerSectionTitle {
+  background: #eef2f7;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #3a4a6a;
+  margin: 10px 0;
+}
+#drawer,
+#nameDrawer {
+  background: #fafbff;
+}
+.drawerContent {
+  padding: 10px 4px;
+}
 .attributeItem {
   background: #ffffff;
   border-radius: 12px;
@@ -485,7 +510,7 @@ html, body { margin:0; padding:0; height:100%; }
 <div id="drawer">
   <span id="closeDrawer">✕</span>
 
-  <div class="drawer-header">
+  <div class="drawerHeader">
     <img class="drawer-logo" src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Branding/CROPS_Logo.png" alt="">
     <div class="drawer-title">CROPS Fresh Food System</div>
   </div>
@@ -508,9 +533,13 @@ html, body { margin:0; padding:0; height:100%; }
 <div id="nameDrawer">
   <span id="closeNameDrawer">✕</span>
   <span id="nameDrawerCollapse">▲</span>
-  <div id="nameDrawerTitle">Filter by Location Name</div>
-  <div id="nameList"></div>
-  <div id="resetNameFilter">Reset Filter</div>
+  <div class="drawerHeader">
+    <div id="nameDrawerTitle">Filter by Location Name</div>
+  </div>
+  <div class="drawerContent">
+    <div id="nameList"></div>
+    <div id="resetNameFilter">Reset Filter</div>
+  </div>
 </div>
 <script>
 // Initialize map
