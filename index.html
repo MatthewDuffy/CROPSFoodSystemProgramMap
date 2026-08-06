@@ -382,18 +382,30 @@ html, body { margin:0; padding:0; height:100%; }
   color: #333;
   padding: 0 20px;
   cursor: pointer;
-}
-  .mapButton {
-  background: inherit !important;
+}/* FORCE COLORS ON MAP BUTTONS */
+.navButton,
+.navButton.secondary {
+  background: none !important;
+  color: inherit !important;
 }
 
-.googleMapButton {
+/* FINAL-FINAL OVERRIDE — REMOVE DRAWER BACKGROUND FROM BUTTONS */
+.attributeItemButtons a {
+  background: transparent !important;
+}
+
+.attributeItemButtons a.mapButton {
+  background: transparent !important;
+}
+
+.attributeItemButtons a.googleMapButton {
   background: #4285F4 !important;
 }
 
-.appleMapButton {
+.attributeItemButtons a.appleMapButton {
   background: #34C759 !important;
 }
+
 </style>
 </head>
 
