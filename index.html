@@ -111,6 +111,7 @@ html, body { margin:0; padding:0; height:100%; }
   color: #333;
 }
 
+
 .nameListItem {
   padding: 8px 6px;
   border-bottom: 1px solid #eee;
@@ -478,6 +479,7 @@ html, body { margin:0; padding:0; height:100%; }
 <!-- NEW Right-Side Name Drawer -->
 <div id="nameDrawer">
   <span id="closeNameDrawer">✕</span>
+  <span id="nameDrawerCollapse">▲</span>
   <div id="nameDrawerTitle">Filter by Location Name</div>
 
   <div id="nameList"></div>
@@ -513,6 +515,24 @@ const nameDrawer = document.getElementById('nameDrawer');
 const nameList = document.getElementById('nameList');
 const resetNameFilter = document.getElementById('resetNameFilter');
 document.getElementById('closeNameDrawer').onclick = () => nameDrawer.classList.remove('open');
+let nameDrawerCollapsed = true;
+
+function updateNameDrawerUI() {
+  if (nameDrawerCollapsed) {
+    nameDrawer.style.bottom = "-60%";   // collapsed position (matches left drawer)
+    nameDrawerCollapse.textContent = "▲";
+  } else {
+    nameDrawer.style.bottom = "0";      // expanded position
+    nameDrawerCollapse.textContent = "▼";
+  }
+}
+
+updateNameDrawerUI();
+
+document.getElementById("nameDrawerCollapse").addEventListener("click", () => {
+  nameDrawerCollapsed = !nameDrawerCollapsed;
+  updateNameDrawerUI();
+});
 
 // Legend / Filter panel behavior
 const legendBody = document.getElementById('legend-body');
@@ -679,6 +699,10 @@ function applyFilter(rawType) {
   // Restore right drawer list/reset state
   resetNameFilter.style.display = "none";
   nameList.style.display = "block";
+
+  // Collapse the right drawer when filters change
+  nameDrawerCollapsed = true;
+  updateNameDrawerUI();
 
   // Remove layers
   map.removeLayer(clusterGroup);
