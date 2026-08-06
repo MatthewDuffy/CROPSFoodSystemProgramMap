@@ -13,6 +13,31 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <style>
+  .attributeItemButtons {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+}
+
+.mapButton {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  flex: 1;
+}
+
+.googleMapButton {
+  background: #4285F4;
+}
+
+.appleMapButton {
+  background: #34C759;
+}
+
 /* ------------------ Base Layout ------------------ */
 html, body { margin:0; padding:0; height:100%; }
 #map { height:100%; width:100%; }
@@ -816,8 +841,15 @@ function showDrawer(feature) {
     <p><strong>Hours:</strong> ${p.Hours}</p>
     ${p.Email && p.Email !== "�" ? `<p><strong>Email:</strong> ${p.Email}</p>` : ""}
     ${p.Phone && p.Phone !== "�" ? `<p><strong>Phone:</strong> ${p.Phone}</p>` : ""}
-    <a class="navButton" href="${googleUrl}" target="_blank">Open in Google Maps</a>
-    <a class="navButton secondary" href="${appleUrl}" target="_blank">Open in Apple Maps</a>
+    <div class="attributeItemButtons">
+      <a class="mapButton googleMapButton" href="${googleUrl}" target="_blank">
+        Open in Google Maps
+      </a>
+
+      <a class="mapButton appleMapButton" href="${appleUrl}" target="_blank">
+        Open in Apple Maps
+      </a>
+    </div>
   `;
 
   drawer.classList.add("open");
