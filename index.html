@@ -159,10 +159,10 @@ html, body { margin:0; padding:0; height:100%; }
 /* ------------------ NEW Right-Side Drawer ------------------ */
 #nameDrawer {
   position: fixed;
-  right: 12px;
-  left: auto;
+  right: 12px;              /* Aligns with legend padding */
+  width: 280px;             /* MATCHES legend max-width */
+  max-width: 280px;
   bottom: -60%;
-  /*width: 260px;              /* Slightly narrower */
   height: 60%;
   background: #fff;
   border-radius: 16px 16px 0 0;
@@ -173,6 +173,7 @@ html, body { margin:0; padding:0; height:100%; }
   font-family: sans-serif;
   z-index: 9999;
 }
+
 
 #nameDrawer.open { bottom: 0; }
 
