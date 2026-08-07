@@ -685,6 +685,7 @@ filterToggle.addEventListener('click', () => {
 });
 
 // Marker layers
+// Marker layers
 const iconLookup = {
   "Farmers Market": "Carrot.svg",
   "Pantry": "Truck.svg",
@@ -697,7 +698,7 @@ const iconLookup = {
   "AtlantiCare Community Mobile Market": "Cart.svg"
 };
 
-// const clusterGroup = L.markerClusterGroup({
+const clusterGroup = L.markerClusterGroup({
   iconCreateFunction: function(cluster) {
     const markers = cluster.getAllChildMarkers();
 
@@ -718,7 +719,7 @@ const iconLookup = {
       }
     });
 
-    // Final cluster bubble
+    // Final cluster bubble (multi‑icon cluster renderer)
     return L.divIcon({
       html: `
         <div style="
@@ -753,6 +754,7 @@ const allMarkers = [];
 // NEW: store names for alphabetical drawer
 let allNames = [];
 let nameToMarker = {};
+
 /* Load GeoJSON */
 fetch("https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/data/freshfoodlocations.geojson")
   .then(r => r.json())
@@ -799,6 +801,7 @@ fetch("https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/
 /* Build alphabetical list for right-side drawer */
 function buildNameList() {
   allNames.sort((a, b) => a.localeCompare(b));
+
 
   nameList.innerHTML = "";
 
