@@ -685,7 +685,68 @@ filterToggle.addEventListener('click', () => {
 });
 
 // Marker layers
-const clusterGroup = L.markerClusterGroup();
+const iconLookup = {
+  "Farmers Market": "Carrot.svg",
+  "Pantry": "Truck.svg",
+  "Garden": "Sunflower.svg",
+  "Soup Kitchen": "Soup.svg",
+  "Program": "Meal.svg",
+  "Food Store": "GreenShoppingCart.svg",
+  "Farm": "Apple.svg",
+  "Jewish Family Service Distribution": "LightBlueTruck.svg",
+  "AtlantiCare Community Mobile Market": "Cart.svg"
+};
+
+const clusterGroup = L.markerClusterGroup({
+  iconCreateFunction: function(cluster) {
+    const markers = cluster.getAllChildMarkers();
+
+    // Collect unique types inside the cluster
+    const types = new Set(
+      markers.map(m => m.feature.properties.Type)
+    );
+
+    // Build HTML for each icon
+    let iconsHTML = "";
+    types.forEach(type => {
+      const iconFile = iconLookup[type];
+      if (iconFile) {
+        iconsHTML += `
+          <img src="https://raw.githubusercontent.com/MatthewDuffy/CROPSFoodSystemProgramMap/main/Icons/${iconFile}"
+               style="width:18px;height:18px;margin:2px;">
+        `;
+      }
+    });
+
+    // Final cluster bubble
+    return L.divIcon({
+      html: `
+        <div style="
+          background:#ffffff;
+          border-radius:50%;
+          border:2px solid #4e79a7;
+          width:50px;
+          height:50px;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          justify-content:center;
+          text-align:center;
+        ">
+          <div style="font-size:12px;font-weight:bold;">
+            ${cluster.getChildCount()}
+          </div>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;">
+            ${iconsHTML}
+          </div>
+        </div>
+      `,
+      className: "multi-icon-cluster",
+      iconSize: [50, 50]
+    });
+  }
+});
+
 const plainGroup = L.layerGroup();
 const allMarkers = [];
 
