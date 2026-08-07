@@ -776,6 +776,33 @@ function applyNameFilter(name) {
   // Open left drawer with feature details
   showDrawer(obj.feature);
 
+  // ⭐ Auto-collapse the right drawer after selecting a name
+  nameDrawerCollapsed = true;
+  updateNameDrawerUI();
+
+  // Switch right drawer to reset mode
+  nameList.style.display = "none";
+  resetNameFilter.style.display = "block";
+}
+
+  // Remove cluster and plain layers
+  map.removeLayer(clusterGroup);
+  map.removeLayer(plainGroup);
+  plainGroup.clearLayers();
+
+  const obj = nameToMarker[name];
+  if (!obj) return;
+
+  plainGroup.addLayer(obj.marker);
+  map.addLayer(plainGroup);
+
+  // Zoom to marker
+  const latlng = obj.marker.getLatLng();
+  map.setView(latlng, 16);
+
+  // Open left drawer with feature details
+  showDrawer(obj.feature);
+
   // Switch right drawer to reset mode
   nameList.style.display = "none";
   resetNameFilter.style.display = "block";
